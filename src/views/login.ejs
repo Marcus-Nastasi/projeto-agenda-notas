@@ -1,0 +1,106 @@
+<%- include("includes/head") %>
+<%- include("includes/nav") %>
+
+<div class="container">
+
+   <div class="row">
+
+      <div class="col-lg-2"></div>
+      
+      <div class="col-lg-8 my-5">
+         <h1 id="h1-home-agenda" class="text-center text-white">Cadastro ou Login</h1>
+         <p class="text-center lead text-white">Crie sua conta ou faça o login</p>
+
+         <div class="row bg-light p-5 my-5 rounded">
+
+            <div class="col-lg">
+
+               <% if(sucess) { %>
+                  
+                  <div class="alert alert-success rounded p-3 mb-4 text-center">
+                     <p class="alert-success">Sua conta foi criada com sucesso!</p>
+                     <p class="alert-success">Faça o login para acessá-la</p>
+                  </div>
+
+               <% } %>
+
+               <% if(err) {%>
+                  
+                  <div class="alert alert-danger rounded p-3 mb-4 text-center">
+                     <p class="alert-danger">Erro(s)!</p>
+                     <p>
+                        <% err.forEach(v => { %> 
+                           <span class="alert-danger"> 
+                              <%= v %> 
+                           </span><br>
+                        <% }); %>
+                     </p>
+                  </div>
+
+               <% } %>
+
+               <h4 class="mb-3">Cadastre-se</h4>
+
+               <form action="/login/register" method="post">
+
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                  <div class="mb-3">
+                     <label for="cadastroEmail" class="form-label">Email</label>
+                     <input type="email" class="form-control" name="cadastroEmail" id="cadastro-email" placeholder="nome@exemplo.com">
+                  </div>
+                  <div class="mb-3">
+                     <label for="telefone" class="form-label">Telefone</label>
+                     <input type="tel" class="form-control" name="telefone" id="telefone">
+                  </div>
+                  <div class="mb-3">
+                     <label for="cadastroSenha" class="form-label">Senha</label>
+                     <input type="password" class="form-control" name="cadastroSenha" id="cadastro-senha">
+                  </div>
+                  <div class="mb-3">
+                     <label for="confirmSenha" class="form-label">Confirmar Senha</label>
+                     <input type="password" class="form-control" name="confirmSenha" id="confirm-senha">
+                  </div>
+                  <div class="mb-3">
+                     <button type="submit" class="btn btn-primary">Cadastrar</button>
+                  </div>
+               </form>
+
+            </div>
+
+            <span class="linha-separ"></span>
+
+            <div class="col-lg">
+
+               <h4 class="mb-3">Login</h4>
+
+               <form action="/login/user" method="post">
+
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                  <div class="mb-3">
+                     <label for="login-email" class="form-label">Email</label>
+                     <input type="email" class="form-control" name="login-email" id="login-email" placeholder="nome@exemplo.com">
+                  </div>
+                  <div class="mb-3">
+                     <label for="login-senha" class="form-label">Senha</label>
+                     <input type="password" class="form-control" name="login-senha" id="login-senha">
+                  </div>
+                  <div class="mb-3">
+                     <button type="submit" class="btn btn-secondary">Login</button>
+                  </div>
+               </form>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="col-lg-2"></div>
+
+   </div>
+   
+</div>
+
+<%- include("includes/footer") %>
