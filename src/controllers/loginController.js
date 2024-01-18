@@ -21,10 +21,11 @@ exports.register = async (req, res) => {
       sucess = false;
    }
 
-   req.session.save(function() {
-      res.redirect('back'); // volta para página anterior. 
-   })
+   // req.session.save(function() {
+   //    res.redirect('back'); // volta para página anterior. 
+   // });
 
-   // res.render('login', { sucess: sucess, err: err });
+   res.redirect('back'); // volta para página anterior. 
+
 };
 
