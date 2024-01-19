@@ -57,7 +57,7 @@ class CreateUser {
       // telefone
       if(this.body.telefone.length == 0) this.errors.push('O telefone precisa ser preenchido.');
       if(!validator.isMobilePhone(this.body.telefone, 'pt-BR')) {
-         this.errors.push('Telefone inválido  (Inserir DDD também).')
+         this.errors.push('Telefone inválido (Inserir DDD também).')
       }
 
       // senha

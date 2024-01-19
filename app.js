@@ -27,7 +27,7 @@ const sessionOptions = session({
    cookie: { maxAge: 1000*60*60*24*2, httpOnly: true }
 });
 
-// usando as sessionOptions.
+// usando as sessionOptions e flashes.
 app.use(sessionOptions);
 app.use(flash());
 
