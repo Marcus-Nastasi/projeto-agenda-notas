@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 const registerSchema = new mongoose.Schema({
    email: { type: String, required: true },
@@ -17,26 +18,30 @@ class CreateUser {
    }
 
    async registraUsuario() {
-      this.validaCampos();
+      await this.validaCampos();
       if(this.errors.length > 0) return;
-      try {
-         this.user = await registerModel.create({
-            email: this.body.email,
-            telefone: this.body.telefone,
-            senha: this.body.senha,
-         });
-      } catch(e) {
-         console.error(e);
-      }
+      const salt = bcrypt.genSaltSync();
+      this.body.senha = bcrypt.hashSync(this.body.senha, salt);
+      this.user = await registerModel.create({
+         email: this.body.email,
+         telefone: this.body.telefone,
+         senha: this.body.senha,
+      });
    }
 
-   validaCampos() {
+   async validaCampos() {
       this.validaString();
       this.formataBody();
       this.validaErrosCampos();
+      await this.userExists();
    }
 
    // baixa ordem
+   async userExists() {
+      const user = await registerModel.findOne({ email: this.body.email });
+      if(user) this.errors.push('E-mail já cadastrado.');
+   }
+
    validaString() {
       for(let i in this.body) if(typeof this.body[i] !== 'string') String(this.body[i]);
    }
