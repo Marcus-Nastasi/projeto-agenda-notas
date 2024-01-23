@@ -1,1 +1,1 @@
-exports.pgErro = (req, res, next) => res.render('404');
+exports.pgErro = (req, res) => res.render('404');

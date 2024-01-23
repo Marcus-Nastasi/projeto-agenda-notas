@@ -18,6 +18,7 @@
                <% if(sucess) { %>
                   
                   <div class="alert alert-success rounded p-3 mb-4 text-center">
+                     <p></p>
                      <p class="alert-success">Sua conta foi criada com sucesso!</p>
                      <p class="alert-success">Faça o login para acessá-la</p>
                   </div>
@@ -27,6 +28,7 @@
                <% if(err) {%>
                   
                   <div class="alert alert-danger rounded p-3 mb-4 text-center">
+                     <p></p>
                      <p class="alert-danger">Erro(s)!</p>
                      <p>
                         <% err.forEach(v => { %> 
@@ -72,6 +74,33 @@
 
             <div class="col-lg">
 
+               <% if(logSucess) { %>
+                  
+                  <div class="alert alert-success rounded p-3 mb-4 text-center">
+                     <p></p>
+                     <p class="alert-success">
+                        <%= logSucess %>
+                     </p>
+                  </div>
+
+               <% } %>
+
+               <% if(logErr) {%>
+                  
+                  <div class="alert alert-danger rounded p-3 mb-4 text-center">
+                     <p></p>
+                     <p class="alert-danger">Erro(s)!</p>
+                     <p>
+                        <% logErr.forEach(v => { %> 
+                           <span class="alert-danger"> 
+                              <%= v %> 
+                           </span><br>
+                        <% }); %>
+                     </p>
+                  </div>
+
+               <% } %>
+
                <h4 class="mb-3">Login</h4>
 
                <form action="/login/user" method="post">
@@ -79,12 +108,12 @@
                   <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
                   <div class="mb-3">
-                     <label for="login-email" class="form-label">Email</label>
-                     <input type="email" class="form-control" name="login-email" id="login-email" placeholder="nome@exemplo.com">
+                     <label for="loginEmail" class="form-label">Email</label>
+                     <input type="email" class="form-control" name="loginEmail" id="loginEmail" placeholder="nome@exemplo.com">
                   </div>
                   <div class="mb-3">
-                     <label for="login-senha" class="form-label">Senha</label>
-                     <input type="password" class="form-control" name="login-senha" id="login-senha">
+                     <label for="loginSenha" class="form-label">Senha</label>
+                     <input type="password" class="form-control" name="loginSenha" id="loginSenha">
                   </div>
                   <div class="mb-3">
                      <button type="submit" class="btn btn-secondary">Login</button>

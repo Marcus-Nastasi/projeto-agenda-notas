@@ -8,7 +8,7 @@ const registerSchema = new mongoose.Schema({
    senha: { type: String, required: true },
 });
 
-const registerModel = mongoose.model('Register', registerSchema);
+registerModel = mongoose.model('Register', registerSchema);
 
 class CreateUser {
    constructor(body) {
@@ -38,8 +38,8 @@ class CreateUser {
 
    // baixa ordem
    async userExists() {
-      const user = await registerModel.findOne({ email: this.body.email });
-      if(user) this.errors.push('E-mail já cadastrado.');
+      const userCadastrado = await registerModel.findOne({ email: this.body.email });
+      if(userCadastrado) this.errors.push('E-mail já cadastrado.');
    }
 
    validaString() {
@@ -86,4 +86,43 @@ class CreateUser {
       }
    }
 }
-module.exports = CreateUser;
+
+// Login Usuário
+class LogUser {
+   constructor(body) {
+      this.body = body;
+      this.errors = [];
+      this.user = null;
+   }
+
+   async logaUsuario() {
+      await this.validaCampos();
+      if(this.errors.length > 0) return;
+   }
+
+   async validaCampos() {
+      this.validaString();
+      await this.userExists();
+   }
+
+   // baixa ordem
+   async userExists() {
+      this.user = await registerModel.findOne({ email: this.body.loginEmail });
+      if(!this.user) {
+         this.errors.push('E-mail não encontrado. Faça o cadastro.');
+         return;
+      }
+
+      if(!bcrypt.compareSync(this.body.loginSenha, this.user.senha)) {
+         this.errors.push('Senha inválida.');
+         return;
+      }
+   }
+
+   validaString() {
+      for(let i in this.body) if(typeof this.body[i] !== 'string') String(this.body[i]);
+   }
+}
+
+module.exports = { CreateUser, LogUser };
+

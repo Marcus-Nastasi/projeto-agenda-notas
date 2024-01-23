@@ -20,7 +20,7 @@ const flash = require('connect-flash');
 
 // configurando as sessoes.
 const sessionOptions = session({
-   secret: '12345',
+   secret: process.env.SECRET,
    store: mongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
    resave: false,
    saveUninitialized: false,
