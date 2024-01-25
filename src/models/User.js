@@ -123,6 +123,5 @@ class LogUser {
       for(let i in this.body) if(typeof this.body[i] !== 'string') String(this.body[i]);
    }
 }
-
 module.exports = { CreateUser, LogUser };
 
