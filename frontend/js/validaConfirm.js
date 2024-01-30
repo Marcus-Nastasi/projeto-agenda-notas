@@ -10,3 +10,4 @@ function validaConfirmadorSenha() {
    }
 }
 inputs.forEach(input => input.onkeyup = () => validaConfirmadorSenha());
+

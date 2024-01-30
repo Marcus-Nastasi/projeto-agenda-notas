@@ -6,12 +6,15 @@ var logErr = false;
 var logSucess = false;
 
 // Index controller
-exports.index = (req, res) => res.render('login', { 
-   sucess: sucess, 
-   err: err, 
-   logSucess: logSucess,  
-   logErr: logErr
-});
+exports.index = (req, res) => {
+   res.render('login', { 
+      sucess: sucess, 
+      err: err, 
+      logSucess: logSucess,  
+      logErr: logErr,
+      user: null
+   });
+};
 
 // register controllers
 exports.register = async (req, res) => {
@@ -45,10 +48,16 @@ exports.logUser = async (req, res) => {
          logSucess = false;
       }
       req.session.user = logUser.user;
-      res.redirect('back'); // volta para página anterior.
+      res.redirect('back');
    } catch(e) {
       res.render('404');
       console.error(e);
    }
+};
+
+// Rota logout
+exports.logout = (req, res) => {
+   req.session.destroy();
+   res.redirect('back');
 };
 

@@ -5,75 +5,116 @@
    <div class="row">
 
       <div class="col-lg-2"></div>
-      
-      <div class="col-lg-8 my-5">
-         <h1 id="h1-home-agenda" class="text-center text-white">Agenda</h1>
-         <p class="text-center lead text-white">Seus compromissos estão abaixo:</p>
 
-         <div class="row">
-            <div class="col">
-               <div class="alert alert-success text-center">
-                  <p class="alert-success">Acerto</p>
-               </div>
-            </div>
-         </div>
-
-         <div class="row">
-            <div class="col">
-               <div class="alert alert-danger text-center">
-                  <p class="alert-danger">Erro</p>
-               </div>
-            </div>
-         </div>
+      <% if(!user) { %>
          
-      </div>
+         <div class="col-lg-8 my-5">
+            <h1 id="h1-home-agenda" class="text-center text-white">Faça o Login ou Crie sua conta.</h1>
+            <!-- <p class="text-center lead text-white">Seus compromissos estão abaixo: </p> -->
+         </div>
 
-      <div class="table-responsive">
-         <table id="tbl" class="table text-center table-dark table-striped table-hover">
+      <% } %>
 
-            <thead style="font-weight: bold; font-size: large;">
-               <td>Nome</td>
-               <td>E-mail</td>
-               <td>Telefone</td>
-               <td>Endereço</td>
-               <td>Site/Rede Social</td>
-            </thead>
+      <% if(user) { %>
+      
+         <div class="col-lg-8 my-5">
+            <h1 id="h1-home-agenda" class="text-center text-white">TaskApp</h1>
+            <h1 id="h1-home-agenda" class="text-center text-white">
+               Olá, <%= user.email %>
+            </h1>
+            <p class="text-center lead text-white">Suas tasks estão abaixo:</p>
             
-            <tr>
-               <td>Marcus Vini</td>
-               <td>vinnie.nsts@gmail.com</td>
-               <td>(11) 99832-1234</td>
-               <td>Rua Vapabussu</td>
-               <td>send.rolemberg.net.br</td>
-            </tr>
-            
-            <tr>
-               <td>Marcus Vini</td>
-               <td>vinnie.nsts@gmail.com</td>
-               <td>(11) 99832-1234</td>
-               <td>Rua Vapabussu</td>
-               <td>send.rolemberg.net.br</td>
-            </tr>
-            
-            <tr>
-               <td>Marcus Vini</td>
-               <td>vinnie.nsts@gmail.com</td>
-               <td>(11) 99832-1234</td>
-               <td>Rua Vapabussu</td>
-               <td>send.rolemberg.net.br</td>
-            </tr>
-            
-            <tr>
-               <td>Marcus Vini</td>
-               <td>vinnie.nsts@gmail.com</td>
-               <td>(11) 99832-1234</td>
-               <td>Rua Vapabussu</td>
-               <td>send.rolemberg.net.br</td>
-            </tr>
+         </div>
 
-         </table>
+         <div class="row m-4 w-50 ">
+            <div class="col">
+               <button id="btnTasks" class="btnTask" type="button">
+                  Adicionar Task
+               </button>
+            </div>
+         </div>
 
-      </div>
+         <div id="mainNewTask" class="d-none">
+            <div id="divPreForm">
+               <form action="/newTask" class="rounded-3 bg-dark">
+
+                  <div id="divInForm" class="bg-light text-bg-light rounded-3">
+
+                     <label for="nome">Nome:</label>
+                     <input class="input-group-text" type="text" name="nome" id="inpNome">
+
+                     <label for="data">Data:</label>
+                     <input class="input-group-text" type="date" name="data" id="inpData" >
+                     
+
+                     <label for="descr">Descrição:</label>
+                     <textarea class="input-group-text" name="descr" id="inpDescr" cols="30" rows="10"></textarea>
+                     
+                     <br>
+
+                     <a id="linkNewTast" href="/newtask">
+                        <button type="submit" class="btn btn-dark w-25">
+                           Criar
+                        </button>
+                     </a>
+
+
+                  </div>
+
+                  <button id="btnClose" class="btn-close btn-close-white" type="button"></button>
+
+               </form>
+            </div>
+         </div>
+
+         <div class="table-responsive">
+            <table id="tbl" class="table text-center table-dark table-striped table-hover">
+
+               <thead style="font-weight: bold; font-size: large;">
+                  <td>Nome</td>
+                  <td>E-mail</td>
+                  <td>Telefone</td>
+                  <td>Endereço</td>
+                  <td>Site/Rede Social</td>
+               </thead>
+               
+               <tr>
+                  <td>Marcus Vini</td>
+                  <td>vinnie.nsts@gmail.com</td>
+                  <td>(11) 99832-1234</td>
+                  <td>Rua Vapabussu</td>
+                  <td>send.rolemberg.net.br</td>
+               </tr>
+               
+               <tr>
+                  <td>Marcus Vini</td>
+                  <td>vinnie.nsts@gmail.com</td>
+                  <td>(11) 99832-1234</td>
+                  <td>Rua Vapabussu</td>
+                  <td>send.rolemberg.net.br</td>
+               </tr>
+               
+               <tr>
+                  <td>Marcus Vini</td>
+                  <td>vinnie.nsts@gmail.com</td>
+                  <td>(11) 99832-1234</td>
+                  <td>Rua Vapabussu</td>
+                  <td>send.rolemberg.net.br</td>
+               </tr>
+               
+               <tr>
+                  <td>Marcus Vini</td>
+                  <td>vinnie.nsts@gmail.com</td>
+                  <td>(11) 99832-1234</td>
+                  <td>Rua Vapabussu</td>
+                  <td>send.rolemberg.net.br</td>
+               </tr>
+
+            </table>
+
+         </div>
+
+      <% } %>
 
       <div class="col-lg-2"></div>
       

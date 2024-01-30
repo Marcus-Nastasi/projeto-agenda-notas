@@ -24,7 +24,7 @@ const sessionOptions = session({
    store: mongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
    resave: false,
    saveUninitialized: false,
-   cookie: { maxAge: 1000*60*60*24*2, httpOnly: true }
+   cookie: { maxAge: 1000*60*60*12, httpOnly: true }
 });
 
 // usando as sessionOptions e flashes.

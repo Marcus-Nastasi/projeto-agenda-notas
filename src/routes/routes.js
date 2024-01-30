@@ -16,6 +16,9 @@ routes.post('/login/register', loginController.register);
 // Rota para logar os usuários
 routes.post('/login/user', loginController.logUser);
 
+// logout user
+routes.get('/login/logout', loginController.logout);
+
 // Rota erro 404
 routes.get('/404', errController.pgErro);
 

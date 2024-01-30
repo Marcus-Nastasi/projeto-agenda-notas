@@ -1,3 +1,5 @@
 exports.index = (req, res) => {
-   res.render('index');
+   res.locals.user = req.session.user;
+   res.render('index', { user: res.locals.user });
 };
+

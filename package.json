@@ -4,8 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "nodemon app.js -w",
-    "bbl": "webpack"
+    "dev": "nodemon app.js -w",
+    "bbl": "webpack -w"
   },
   "keywords": [],
   "author": "",

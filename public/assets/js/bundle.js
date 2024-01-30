@@ -1,6 +1,24 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/js/newTask.js":
+/*!********************************!*\
+  !*** ./frontend/js/newTask.js ***!
+  \********************************/
+/***/ (() => {
+
+var btn = document.getElementById('btnTasks');
+var btnClose = document.getElementById('btnClose');
+var mainSection = document.getElementById('mainNewTask');
+btn.onclick = function () {
+  return mainSection.classList.remove('d-none');
+};
+btnClose.onclick = function () {
+  return mainSection.classList.add('d-none');
+};
+
+/***/ }),
+
 /***/ "./frontend/js/validaConfirm.js":
 /*!**************************************!*\
   !*** ./frontend/js/validaConfirm.js ***!
@@ -47,7 +65,6 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `/* Formatações iniciais 
 ------------------------*/
-
 body {
    font-size: 16px;
    background: rgb(255, 255, 255);
@@ -56,25 +73,20 @@ body {
 
 /* Navegação
 --------------*/
-
 div#div-nav.flex ul.navbar-nav {
    margin-left: 80%;
 }
-
 div#div-nav.flex a.navbar-brand {
    margin-left: 7%;
 }
-
 div#div-nav.flex a.nav-link {
    font-size: 1rem;
    padding: 0.3rem;
    border-radius: 1rem;
 }
-
 div#div-nav.flex a.nav-link.active {
    margin-right: 1rem;
 }
-
 div#div-nav.flex a.nav-link:hover {
    box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.678);
    transition: all 400ms ease-in-out;
@@ -82,22 +94,24 @@ div#div-nav.flex a.nav-link:hover {
 
 /* Home Agenda
 ---------------*/
-
 h1#h1-home-agenda.text-center {
    font-family: 'System-ui';
-   font-size: 4rem;
+   font-size: 350%;
+}
+@media(max-width: 595px) {
+   h1#h1-home-agenda.text-center {
+      font-size: 150%;
+   }  
 }
 
 /* Cadastro e Login
 ----------*/
-
 span.linha-separ {
    width: 1px;
    border-left: 3px solid rgba(128, 128, 128, 0.7);
    position: relative;
    left: 12px;
 }
-
 @media(max-width: 990px) {
    span.linha-separ {
       margin-bottom: 2rem;
@@ -111,12 +125,117 @@ span.linha-separ {
 
 /* Form - Cadastro e Login
 --------*/
-
 .form-control:focus {
    box-shadow: 0 0 0 3.1px #575757;
    outline: #575757;
 }
-`, "",{"version":3,"sources":["webpack://./frontend/css/style.css"],"names":[],"mappings":"AAAA;yBACyB;;AAEzB;GACG,eAAe;GACf,8BAA8B;GAC9B,WAAW;AACd;;AAEA;eACe;;AAEf;GACG,gBAAgB;AACnB;;AAEA;GACG,eAAe;AAClB;;AAEA;GACG,eAAe;GACf,eAAe;GACf,mBAAmB;AACtB;;AAEA;GACG,kBAAkB;AACrB;;AAEA;GACG,uDAAuD;GACvD,iCAAiC;AACpC;;AAEA;gBACgB;;AAEhB;GACG,wBAAwB;GACxB,eAAe;AAClB;;AAEA;WACW;;AAEX;GACG,UAAU;GACV,+CAA+C;GAC/C,kBAAkB;GAClB,UAAU;AACb;;AAEA;GACG;MACG,mBAAmB;MACnB,WAAW;MACX,WAAW;MACX,8CAA8C;MAC9C,kBAAkB;MAClB,SAAS;GACZ;AACH;;AAEA;SACS;;AAET;GACG,+BAA+B;GAC/B,gBAAgB;AACnB","sourcesContent":["/* Formatações iniciais \n------------------------*/\n\nbody {\n   font-size: 16px;\n   background: rgb(255, 255, 255);\n   width: 100%;\n}\n\n/* Navegação\n--------------*/\n\ndiv#div-nav.flex ul.navbar-nav {\n   margin-left: 80%;\n}\n\ndiv#div-nav.flex a.navbar-brand {\n   margin-left: 7%;\n}\n\ndiv#div-nav.flex a.nav-link {\n   font-size: 1rem;\n   padding: 0.3rem;\n   border-radius: 1rem;\n}\n\ndiv#div-nav.flex a.nav-link.active {\n   margin-right: 1rem;\n}\n\ndiv#div-nav.flex a.nav-link:hover {\n   box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.678);\n   transition: all 400ms ease-in-out;\n}\n\n/* Home Agenda\n---------------*/\n\nh1#h1-home-agenda.text-center {\n   font-family: 'System-ui';\n   font-size: 4rem;\n}\n\n/* Cadastro e Login\n----------*/\n\nspan.linha-separ {\n   width: 1px;\n   border-left: 3px solid rgba(128, 128, 128, 0.7);\n   position: relative;\n   left: 12px;\n}\n\n@media(max-width: 990px) {\n   span.linha-separ {\n      margin-bottom: 2rem;\n      width: 100%;\n      height: 1px;\n      border-top: 3px solid rgba(128, 128, 128, 0.7);\n      position: relative;\n      top: 12px;\n   }\n}\n\n/* Form - Cadastro e Login\n--------*/\n\n.form-control:focus {\n   box-shadow: 0 0 0 3.1px #575757;\n   outline: #575757;\n}\n"],"sourceRoot":""}]);
+
+/* Btn Tasks */
+div.row div.col button#btnTasks.btnTask {
+   width: fit-content;
+   height: fit-content;
+   padding: 0.5rem;
+   border: 1px solid black;
+   border-radius: 10px;
+   transition: all 200ms ease-in-out;
+}
+div.row div.col button#btnTasks.btnTask:hover {
+   background-color: rgba(186, 186, 186, 0.4);
+   color: #ffffff;
+}
+
+/* New Task */
+#mainNewTask {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(87, 87, 87, 0.6);
+   height: 100vh;
+   width: 100vw;
+   position: fixed;
+   top: 0px;
+   left: 0px;
+   transition: all 1000ms ease-in-out;
+}
+
+#mainNewTask div#divPreForm {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 70vw;
+   height: 90vh;
+}
+
+#mainNewTask form {
+   background-color: #ffffff;
+   width: 50vw;
+   height: 70vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#mainNewTask div#divInForm {
+   box-shadow: 0 0 40px 1px rgb(59, 59, 59);
+   width: 35vw;
+   height: 63vh;
+   padding: 1rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+#mainNewTask div#divInForm label {
+   align-self: flex-start;
+   font-size: larger;
+}
+#mainNewTask div#divInForm input, #mainNewTask div#divInForm textarea {
+   border: 1px solid rgba(151, 151, 151, 0.5);
+   transition: all 45ms ease-in-out;
+}
+#mainNewTask div#divInForm input:focus, 
+#mainNewTask div#divInForm textarea:focus {
+   outline: 2.3px solid gray;
+}
+
+a#linkNewTast {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   text-decoration: none;  
+}
+a#linkNewTast button {
+   font-size: large;
+   font-weight: 600;
+}
+
+button#btnClose {
+   align-self: flex-start;
+   position: relative;
+   left: 5.8rem;
+   top: 1rem;
+}
+button#btnClose.btn-close-white:focus {
+   outline: none;
+   border: none;
+   box-shadow: none;
+}
+
+@media(max-width: 1200px) {
+   #mainNewTask div#divPreForm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70vw;
+      height: 90vh;
+   }
+   #mainNewTask div#divInForm {
+      width: 85vw;
+      height: 70vh;
+   }
+}
+
+`, "",{"version":3,"sources":["webpack://./frontend/css/style.css"],"names":[],"mappings":"AAAA;yBACyB;AACzB;GACG,eAAe;GACf,8BAA8B;GAC9B,WAAW;AACd;;AAEA;eACe;AACf;GACG,gBAAgB;AACnB;AACA;GACG,eAAe;AAClB;AACA;GACG,eAAe;GACf,eAAe;GACf,mBAAmB;AACtB;AACA;GACG,kBAAkB;AACrB;AACA;GACG,uDAAuD;GACvD,iCAAiC;AACpC;;AAEA;gBACgB;AAChB;GACG,wBAAwB;GACxB,eAAe;AAClB;AACA;GACG;MACG,eAAe;GAClB;AACH;;AAEA;WACW;AACX;GACG,UAAU;GACV,+CAA+C;GAC/C,kBAAkB;GAClB,UAAU;AACb;AACA;GACG;MACG,mBAAmB;MACnB,WAAW;MACX,WAAW;MACX,8CAA8C;MAC9C,kBAAkB;MAClB,SAAS;GACZ;AACH;;AAEA;SACS;AACT;GACG,+BAA+B;GAC/B,gBAAgB;AACnB;;AAEA,cAAc;AACd;GACG,kBAAkB;GAClB,mBAAmB;GACnB,eAAe;GACf,uBAAuB;GACvB,mBAAmB;GACnB,iCAAiC;AACpC;AACA;GACG,0CAA0C;GAC1C,cAAc;AACjB;;AAEA,aAAa;AACb;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,uCAAuC;GACvC,aAAa;GACb,YAAY;GACZ,eAAe;GACf,QAAQ;GACR,SAAS;GACT,kCAAkC;AACrC;;AAEA;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,WAAW;GACX,YAAY;AACf;;AAEA;GACG,yBAAyB;GACzB,WAAW;GACX,YAAY;GACZ,aAAa;GACb,uBAAuB;GACvB,mBAAmB;AACtB;;AAEA;GACG,wCAAwC;GACxC,WAAW;GACX,YAAY;GACZ,aAAa;GACb,aAAa;GACb,sBAAsB;GACtB,8BAA8B;AACjC;AACA;GACG,sBAAsB;GACtB,iBAAiB;AACpB;AACA;GACG,0CAA0C;GAC1C,gCAAgC;AACnC;AACA;;GAEG,yBAAyB;AAC5B;;AAEA;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,WAAW;GACX,qBAAqB;AACxB;AACA;GACG,gBAAgB;GAChB,gBAAgB;AACnB;;AAEA;GACG,sBAAsB;GACtB,kBAAkB;GAClB,YAAY;GACZ,SAAS;AACZ;AACA;GACG,aAAa;GACb,YAAY;GACZ,gBAAgB;AACnB;;AAEA;GACG;MACG,aAAa;MACb,uBAAuB;MACvB,mBAAmB;MACnB,WAAW;MACX,YAAY;GACf;GACA;MACG,WAAW;MACX,YAAY;GACf;AACH","sourcesContent":["/* Formatações iniciais \n------------------------*/\nbody {\n   font-size: 16px;\n   background: rgb(255, 255, 255);\n   width: 100%;\n}\n\n/* Navegação\n--------------*/\ndiv#div-nav.flex ul.navbar-nav {\n   margin-left: 80%;\n}\ndiv#div-nav.flex a.navbar-brand {\n   margin-left: 7%;\n}\ndiv#div-nav.flex a.nav-link {\n   font-size: 1rem;\n   padding: 0.3rem;\n   border-radius: 1rem;\n}\ndiv#div-nav.flex a.nav-link.active {\n   margin-right: 1rem;\n}\ndiv#div-nav.flex a.nav-link:hover {\n   box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.678);\n   transition: all 400ms ease-in-out;\n}\n\n/* Home Agenda\n---------------*/\nh1#h1-home-agenda.text-center {\n   font-family: 'System-ui';\n   font-size: 350%;\n}\n@media(max-width: 595px) {\n   h1#h1-home-agenda.text-center {\n      font-size: 150%;\n   }  \n}\n\n/* Cadastro e Login\n----------*/\nspan.linha-separ {\n   width: 1px;\n   border-left: 3px solid rgba(128, 128, 128, 0.7);\n   position: relative;\n   left: 12px;\n}\n@media(max-width: 990px) {\n   span.linha-separ {\n      margin-bottom: 2rem;\n      width: 100%;\n      height: 1px;\n      border-top: 3px solid rgba(128, 128, 128, 0.7);\n      position: relative;\n      top: 12px;\n   }\n}\n\n/* Form - Cadastro e Login\n--------*/\n.form-control:focus {\n   box-shadow: 0 0 0 3.1px #575757;\n   outline: #575757;\n}\n\n/* Btn Tasks */\ndiv.row div.col button#btnTasks.btnTask {\n   width: fit-content;\n   height: fit-content;\n   padding: 0.5rem;\n   border: 1px solid black;\n   border-radius: 10px;\n   transition: all 200ms ease-in-out;\n}\ndiv.row div.col button#btnTasks.btnTask:hover {\n   background-color: rgba(186, 186, 186, 0.4);\n   color: #ffffff;\n}\n\n/* New Task */\n#mainNewTask {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   background-color: rgba(87, 87, 87, 0.6);\n   height: 100vh;\n   width: 100vw;\n   position: fixed;\n   top: 0px;\n   left: 0px;\n   transition: all 1000ms ease-in-out;\n}\n\n#mainNewTask div#divPreForm {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   width: 70vw;\n   height: 90vh;\n}\n\n#mainNewTask form {\n   background-color: #ffffff;\n   width: 50vw;\n   height: 70vh;\n   display: flex;\n   justify-content: center;\n   align-items: center;\n}\n\n#mainNewTask div#divInForm {\n   box-shadow: 0 0 40px 1px rgb(59, 59, 59);\n   width: 35vw;\n   height: 63vh;\n   padding: 1rem;\n   display: flex;\n   flex-direction: column;\n   justify-content: space-between;\n}\n#mainNewTask div#divInForm label {\n   align-self: flex-start;\n   font-size: larger;\n}\n#mainNewTask div#divInForm input, #mainNewTask div#divInForm textarea {\n   border: 1px solid rgba(151, 151, 151, 0.5);\n   transition: all 45ms ease-in-out;\n}\n#mainNewTask div#divInForm input:focus, \n#mainNewTask div#divInForm textarea:focus {\n   outline: 2.3px solid gray;\n}\n\na#linkNewTast {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   width: 100%;\n   text-decoration: none;  \n}\na#linkNewTast button {\n   font-size: large;\n   font-weight: 600;\n}\n\nbutton#btnClose {\n   align-self: flex-start;\n   position: relative;\n   left: 5.8rem;\n   top: 1rem;\n}\nbutton#btnClose.btn-close-white:focus {\n   outline: none;\n   border: none;\n   box-shadow: none;\n}\n\n@media(max-width: 1200px) {\n   #mainNewTask div#divPreForm {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      width: 70vw;\n      height: 90vh;\n   }\n   #mainNewTask div#divInForm {\n      width: 85vw;\n      height: 70vh;\n   }\n}\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22569,8 +22688,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/style.css */ "./frontend/css/style.css");
-/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/validaConfirm */ "./frontend/js/validaConfirm.js");
-/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_validaConfirm__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/newTask */ "./frontend/js/newTask.js");
+/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_newTask__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/validaConfirm */ "./frontend/js/validaConfirm.js");
+/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_validaConfirm__WEBPACK_IMPORTED_MODULE_4__);
 // 
 
 
@@ -22579,6 +22700,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // js
+
 
 })();
 

@@ -1,6 +1,5 @@
 /* Formatações iniciais 
 ------------------------*/
-
 body {
    font-size: 16px;
    background: rgb(255, 255, 255);
@@ -9,25 +8,20 @@ body {
 
 /* Navegação
 --------------*/
-
 div#div-nav.flex ul.navbar-nav {
    margin-left: 80%;
 }
-
 div#div-nav.flex a.navbar-brand {
    margin-left: 7%;
 }
-
 div#div-nav.flex a.nav-link {
    font-size: 1rem;
    padding: 0.3rem;
    border-radius: 1rem;
 }
-
 div#div-nav.flex a.nav-link.active {
    margin-right: 1rem;
 }
-
 div#div-nav.flex a.nav-link:hover {
    box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.678);
    transition: all 400ms ease-in-out;
@@ -35,22 +29,24 @@ div#div-nav.flex a.nav-link:hover {
 
 /* Home Agenda
 ---------------*/
-
 h1#h1-home-agenda.text-center {
    font-family: 'System-ui';
-   font-size: 4rem;
+   font-size: 350%;
+}
+@media(max-width: 595px) {
+   h1#h1-home-agenda.text-center {
+      font-size: 150%;
+   }  
 }
 
 /* Cadastro e Login
 ----------*/
-
 span.linha-separ {
    width: 1px;
    border-left: 3px solid rgba(128, 128, 128, 0.7);
    position: relative;
    left: 12px;
 }
-
 @media(max-width: 990px) {
    span.linha-separ {
       margin-bottom: 2rem;
@@ -64,8 +60,113 @@ span.linha-separ {
 
 /* Form - Cadastro e Login
 --------*/
-
 .form-control:focus {
    box-shadow: 0 0 0 3.1px #575757;
    outline: #575757;
 }
+
+/* Btn Tasks */
+div.row div.col button#btnTasks.btnTask {
+   width: fit-content;
+   height: fit-content;
+   padding: 0.5rem;
+   border: 1px solid black;
+   border-radius: 10px;
+   transition: all 200ms ease-in-out;
+}
+div.row div.col button#btnTasks.btnTask:hover {
+   background-color: rgba(186, 186, 186, 0.4);
+   color: #ffffff;
+}
+
+/* New Task */
+#mainNewTask {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(87, 87, 87, 0.6);
+   height: 100vh;
+   width: 100vw;
+   position: fixed;
+   top: 0px;
+   left: 0px;
+   transition: all 1000ms ease-in-out;
+}
+
+#mainNewTask div#divPreForm {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 70vw;
+   height: 90vh;
+}
+
+#mainNewTask form {
+   background-color: #ffffff;
+   width: 50vw;
+   height: 70vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#mainNewTask div#divInForm {
+   box-shadow: 0 0 40px 1px rgb(59, 59, 59);
+   width: 35vw;
+   height: 63vh;
+   padding: 1rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+#mainNewTask div#divInForm label {
+   align-self: flex-start;
+   font-size: larger;
+}
+#mainNewTask div#divInForm input, #mainNewTask div#divInForm textarea {
+   border: 1px solid rgba(151, 151, 151, 0.5);
+   transition: all 45ms ease-in-out;
+}
+#mainNewTask div#divInForm input:focus, 
+#mainNewTask div#divInForm textarea:focus {
+   outline: 2.3px solid gray;
+}
+
+a#linkNewTast {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   text-decoration: none;  
+}
+a#linkNewTast button {
+   font-size: large;
+   font-weight: 600;
+}
+
+button#btnClose {
+   align-self: flex-start;
+   position: relative;
+   left: 5.8rem;
+   top: 1rem;
+}
+button#btnClose.btn-close-white:focus {
+   outline: none;
+   border: none;
+   box-shadow: none;
+}
+
+@media(max-width: 1200px) {
+   #mainNewTask div#divPreForm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70vw;
+      height: 90vh;
+   }
+   #mainNewTask div#divInForm {
+      width: 85vw;
+      height: 70vh;
+   }
+}
+
