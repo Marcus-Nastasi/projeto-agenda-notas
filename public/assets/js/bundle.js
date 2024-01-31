@@ -10,11 +10,33 @@
 var btn = document.getElementById('btnTasks');
 var btnClose = document.getElementById('btnClose');
 var mainSection = document.getElementById('mainNewTask');
+var preForm = document.getElementById('divPreForm');
+var form = document.getElementById('formTask');
+var inForm = document.getElementById('divInForm');
+var linkCreate = document.getElementById('linkNewTast');
+var labels = document.querySelectorAll('label');
+var inputs = document.querySelectorAll('input');
 btn.onclick = function () {
-  return mainSection.classList.remove('d-none');
+  if (mainSection.classList.contains('d-none')) return mainSection.classList.remove('d-none');
 };
 btnClose.onclick = function () {
   return mainSection.classList.add('d-none');
+};
+mainSection.onclick = function (e) {
+  var ev = e.target;
+  if (ev !== preForm && ev !== form && ev !== inForm && ev != linkCreate) {
+    mainSection.classList.add('d-none');
+  }
+  ;
+  return;
+};
+preForm.onclick = function (e) {
+  var ev = e.target;
+  if (ev !== preForm && ev !== form && ev !== inForm && ev != linkCreate) {
+    mainSection.classList.add('d-none');
+  }
+  ;
+  return;
 };
 
 /***/ }),
@@ -140,8 +162,9 @@ div.row div.col button#btnTasks.btnTask {
    transition: all 200ms ease-in-out;
 }
 div.row div.col button#btnTasks.btnTask:hover {
-   background-color: rgba(186, 186, 186, 0.4);
-   color: #ffffff;
+   background-color: rgba(255, 255, 255, 0.775);
+   color: #000000;
+   /* color: #ffffff; */
 }
 
 /* New Task */
@@ -169,7 +192,7 @@ div.row div.col button#btnTasks.btnTask:hover {
 #mainNewTask form {
    background-color: #ffffff;
    width: 50vw;
-   height: 70vh;
+   height: 80vh;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -178,7 +201,7 @@ div.row div.col button#btnTasks.btnTask:hover {
 #mainNewTask div#divInForm {
    box-shadow: 0 0 40px 1px rgb(59, 59, 59);
    width: 35vw;
-   height: 63vh;
+   height: 70vh;
    padding: 1rem;
    display: flex;
    flex-direction: column;
@@ -198,10 +221,6 @@ div.row div.col button#btnTasks.btnTask:hover {
 }
 
 a#linkNewTast {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 100%;
    text-decoration: none;  
 }
 a#linkNewTast button {
@@ -235,7 +254,7 @@ button#btnClose.btn-close-white:focus {
    }
 }
 
-`, "",{"version":3,"sources":["webpack://./frontend/css/style.css"],"names":[],"mappings":"AAAA;yBACyB;AACzB;GACG,eAAe;GACf,8BAA8B;GAC9B,WAAW;AACd;;AAEA;eACe;AACf;GACG,gBAAgB;AACnB;AACA;GACG,eAAe;AAClB;AACA;GACG,eAAe;GACf,eAAe;GACf,mBAAmB;AACtB;AACA;GACG,kBAAkB;AACrB;AACA;GACG,uDAAuD;GACvD,iCAAiC;AACpC;;AAEA;gBACgB;AAChB;GACG,wBAAwB;GACxB,eAAe;AAClB;AACA;GACG;MACG,eAAe;GAClB;AACH;;AAEA;WACW;AACX;GACG,UAAU;GACV,+CAA+C;GAC/C,kBAAkB;GAClB,UAAU;AACb;AACA;GACG;MACG,mBAAmB;MACnB,WAAW;MACX,WAAW;MACX,8CAA8C;MAC9C,kBAAkB;MAClB,SAAS;GACZ;AACH;;AAEA;SACS;AACT;GACG,+BAA+B;GAC/B,gBAAgB;AACnB;;AAEA,cAAc;AACd;GACG,kBAAkB;GAClB,mBAAmB;GACnB,eAAe;GACf,uBAAuB;GACvB,mBAAmB;GACnB,iCAAiC;AACpC;AACA;GACG,0CAA0C;GAC1C,cAAc;AACjB;;AAEA,aAAa;AACb;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,uCAAuC;GACvC,aAAa;GACb,YAAY;GACZ,eAAe;GACf,QAAQ;GACR,SAAS;GACT,kCAAkC;AACrC;;AAEA;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,WAAW;GACX,YAAY;AACf;;AAEA;GACG,yBAAyB;GACzB,WAAW;GACX,YAAY;GACZ,aAAa;GACb,uBAAuB;GACvB,mBAAmB;AACtB;;AAEA;GACG,wCAAwC;GACxC,WAAW;GACX,YAAY;GACZ,aAAa;GACb,aAAa;GACb,sBAAsB;GACtB,8BAA8B;AACjC;AACA;GACG,sBAAsB;GACtB,iBAAiB;AACpB;AACA;GACG,0CAA0C;GAC1C,gCAAgC;AACnC;AACA;;GAEG,yBAAyB;AAC5B;;AAEA;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,WAAW;GACX,qBAAqB;AACxB;AACA;GACG,gBAAgB;GAChB,gBAAgB;AACnB;;AAEA;GACG,sBAAsB;GACtB,kBAAkB;GAClB,YAAY;GACZ,SAAS;AACZ;AACA;GACG,aAAa;GACb,YAAY;GACZ,gBAAgB;AACnB;;AAEA;GACG;MACG,aAAa;MACb,uBAAuB;MACvB,mBAAmB;MACnB,WAAW;MACX,YAAY;GACf;GACA;MACG,WAAW;MACX,YAAY;GACf;AACH","sourcesContent":["/* Formatações iniciais \n------------------------*/\nbody {\n   font-size: 16px;\n   background: rgb(255, 255, 255);\n   width: 100%;\n}\n\n/* Navegação\n--------------*/\ndiv#div-nav.flex ul.navbar-nav {\n   margin-left: 80%;\n}\ndiv#div-nav.flex a.navbar-brand {\n   margin-left: 7%;\n}\ndiv#div-nav.flex a.nav-link {\n   font-size: 1rem;\n   padding: 0.3rem;\n   border-radius: 1rem;\n}\ndiv#div-nav.flex a.nav-link.active {\n   margin-right: 1rem;\n}\ndiv#div-nav.flex a.nav-link:hover {\n   box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.678);\n   transition: all 400ms ease-in-out;\n}\n\n/* Home Agenda\n---------------*/\nh1#h1-home-agenda.text-center {\n   font-family: 'System-ui';\n   font-size: 350%;\n}\n@media(max-width: 595px) {\n   h1#h1-home-agenda.text-center {\n      font-size: 150%;\n   }  \n}\n\n/* Cadastro e Login\n----------*/\nspan.linha-separ {\n   width: 1px;\n   border-left: 3px solid rgba(128, 128, 128, 0.7);\n   position: relative;\n   left: 12px;\n}\n@media(max-width: 990px) {\n   span.linha-separ {\n      margin-bottom: 2rem;\n      width: 100%;\n      height: 1px;\n      border-top: 3px solid rgba(128, 128, 128, 0.7);\n      position: relative;\n      top: 12px;\n   }\n}\n\n/* Form - Cadastro e Login\n--------*/\n.form-control:focus {\n   box-shadow: 0 0 0 3.1px #575757;\n   outline: #575757;\n}\n\n/* Btn Tasks */\ndiv.row div.col button#btnTasks.btnTask {\n   width: fit-content;\n   height: fit-content;\n   padding: 0.5rem;\n   border: 1px solid black;\n   border-radius: 10px;\n   transition: all 200ms ease-in-out;\n}\ndiv.row div.col button#btnTasks.btnTask:hover {\n   background-color: rgba(186, 186, 186, 0.4);\n   color: #ffffff;\n}\n\n/* New Task */\n#mainNewTask {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   background-color: rgba(87, 87, 87, 0.6);\n   height: 100vh;\n   width: 100vw;\n   position: fixed;\n   top: 0px;\n   left: 0px;\n   transition: all 1000ms ease-in-out;\n}\n\n#mainNewTask div#divPreForm {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   width: 70vw;\n   height: 90vh;\n}\n\n#mainNewTask form {\n   background-color: #ffffff;\n   width: 50vw;\n   height: 70vh;\n   display: flex;\n   justify-content: center;\n   align-items: center;\n}\n\n#mainNewTask div#divInForm {\n   box-shadow: 0 0 40px 1px rgb(59, 59, 59);\n   width: 35vw;\n   height: 63vh;\n   padding: 1rem;\n   display: flex;\n   flex-direction: column;\n   justify-content: space-between;\n}\n#mainNewTask div#divInForm label {\n   align-self: flex-start;\n   font-size: larger;\n}\n#mainNewTask div#divInForm input, #mainNewTask div#divInForm textarea {\n   border: 1px solid rgba(151, 151, 151, 0.5);\n   transition: all 45ms ease-in-out;\n}\n#mainNewTask div#divInForm input:focus, \n#mainNewTask div#divInForm textarea:focus {\n   outline: 2.3px solid gray;\n}\n\na#linkNewTast {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   width: 100%;\n   text-decoration: none;  \n}\na#linkNewTast button {\n   font-size: large;\n   font-weight: 600;\n}\n\nbutton#btnClose {\n   align-self: flex-start;\n   position: relative;\n   left: 5.8rem;\n   top: 1rem;\n}\nbutton#btnClose.btn-close-white:focus {\n   outline: none;\n   border: none;\n   box-shadow: none;\n}\n\n@media(max-width: 1200px) {\n   #mainNewTask div#divPreForm {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      width: 70vw;\n      height: 90vh;\n   }\n   #mainNewTask div#divInForm {\n      width: 85vw;\n      height: 70vh;\n   }\n}\n\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./frontend/css/style.css"],"names":[],"mappings":"AAAA;yBACyB;AACzB;GACG,eAAe;GACf,8BAA8B;GAC9B,WAAW;AACd;;AAEA;eACe;AACf;GACG,gBAAgB;AACnB;AACA;GACG,eAAe;AAClB;AACA;GACG,eAAe;GACf,eAAe;GACf,mBAAmB;AACtB;AACA;GACG,kBAAkB;AACrB;AACA;GACG,uDAAuD;GACvD,iCAAiC;AACpC;;AAEA;gBACgB;AAChB;GACG,wBAAwB;GACxB,eAAe;AAClB;AACA;GACG;MACG,eAAe;GAClB;AACH;;AAEA;WACW;AACX;GACG,UAAU;GACV,+CAA+C;GAC/C,kBAAkB;GAClB,UAAU;AACb;AACA;GACG;MACG,mBAAmB;MACnB,WAAW;MACX,WAAW;MACX,8CAA8C;MAC9C,kBAAkB;MAClB,SAAS;GACZ;AACH;;AAEA;SACS;AACT;GACG,+BAA+B;GAC/B,gBAAgB;AACnB;;AAEA,cAAc;AACd;GACG,kBAAkB;GAClB,mBAAmB;GACnB,eAAe;GACf,uBAAuB;GACvB,mBAAmB;GACnB,iCAAiC;AACpC;AACA;GACG,4CAA4C;GAC5C,cAAc;GACd,oBAAoB;AACvB;;AAEA,aAAa;AACb;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,uCAAuC;GACvC,aAAa;GACb,YAAY;GACZ,eAAe;GACf,QAAQ;GACR,SAAS;GACT,kCAAkC;AACrC;;AAEA;GACG,aAAa;GACb,uBAAuB;GACvB,mBAAmB;GACnB,WAAW;GACX,YAAY;AACf;;AAEA;GACG,yBAAyB;GACzB,WAAW;GACX,YAAY;GACZ,aAAa;GACb,uBAAuB;GACvB,mBAAmB;AACtB;;AAEA;GACG,wCAAwC;GACxC,WAAW;GACX,YAAY;GACZ,aAAa;GACb,aAAa;GACb,sBAAsB;GACtB,8BAA8B;AACjC;AACA;GACG,sBAAsB;GACtB,iBAAiB;AACpB;AACA;GACG,0CAA0C;GAC1C,gCAAgC;AACnC;AACA;;GAEG,yBAAyB;AAC5B;;AAEA;GACG,qBAAqB;AACxB;AACA;GACG,gBAAgB;GAChB,gBAAgB;AACnB;;AAEA;GACG,sBAAsB;GACtB,kBAAkB;GAClB,YAAY;GACZ,SAAS;AACZ;AACA;GACG,aAAa;GACb,YAAY;GACZ,gBAAgB;AACnB;;AAEA;GACG;MACG,aAAa;MACb,uBAAuB;MACvB,mBAAmB;MACnB,WAAW;MACX,YAAY;GACf;GACA;MACG,WAAW;MACX,YAAY;GACf;AACH","sourcesContent":["/* Formatações iniciais \n------------------------*/\nbody {\n   font-size: 16px;\n   background: rgb(255, 255, 255);\n   width: 100%;\n}\n\n/* Navegação\n--------------*/\ndiv#div-nav.flex ul.navbar-nav {\n   margin-left: 80%;\n}\ndiv#div-nav.flex a.navbar-brand {\n   margin-left: 7%;\n}\ndiv#div-nav.flex a.nav-link {\n   font-size: 1rem;\n   padding: 0.3rem;\n   border-radius: 1rem;\n}\ndiv#div-nav.flex a.nav-link.active {\n   margin-right: 1rem;\n}\ndiv#div-nav.flex a.nav-link:hover {\n   box-shadow: 0px 0px 10px 2px rgba(128, 128, 128, 0.678);\n   transition: all 400ms ease-in-out;\n}\n\n/* Home Agenda\n---------------*/\nh1#h1-home-agenda.text-center {\n   font-family: 'System-ui';\n   font-size: 350%;\n}\n@media(max-width: 595px) {\n   h1#h1-home-agenda.text-center {\n      font-size: 150%;\n   }  \n}\n\n/* Cadastro e Login\n----------*/\nspan.linha-separ {\n   width: 1px;\n   border-left: 3px solid rgba(128, 128, 128, 0.7);\n   position: relative;\n   left: 12px;\n}\n@media(max-width: 990px) {\n   span.linha-separ {\n      margin-bottom: 2rem;\n      width: 100%;\n      height: 1px;\n      border-top: 3px solid rgba(128, 128, 128, 0.7);\n      position: relative;\n      top: 12px;\n   }\n}\n\n/* Form - Cadastro e Login\n--------*/\n.form-control:focus {\n   box-shadow: 0 0 0 3.1px #575757;\n   outline: #575757;\n}\n\n/* Btn Tasks */\ndiv.row div.col button#btnTasks.btnTask {\n   width: fit-content;\n   height: fit-content;\n   padding: 0.5rem;\n   border: 1px solid black;\n   border-radius: 10px;\n   transition: all 200ms ease-in-out;\n}\ndiv.row div.col button#btnTasks.btnTask:hover {\n   background-color: rgba(255, 255, 255, 0.775);\n   color: #000000;\n   /* color: #ffffff; */\n}\n\n/* New Task */\n#mainNewTask {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   background-color: rgba(87, 87, 87, 0.6);\n   height: 100vh;\n   width: 100vw;\n   position: fixed;\n   top: 0px;\n   left: 0px;\n   transition: all 1000ms ease-in-out;\n}\n\n#mainNewTask div#divPreForm {\n   display: flex;\n   justify-content: center;\n   align-items: center;\n   width: 70vw;\n   height: 90vh;\n}\n\n#mainNewTask form {\n   background-color: #ffffff;\n   width: 50vw;\n   height: 80vh;\n   display: flex;\n   justify-content: center;\n   align-items: center;\n}\n\n#mainNewTask div#divInForm {\n   box-shadow: 0 0 40px 1px rgb(59, 59, 59);\n   width: 35vw;\n   height: 70vh;\n   padding: 1rem;\n   display: flex;\n   flex-direction: column;\n   justify-content: space-between;\n}\n#mainNewTask div#divInForm label {\n   align-self: flex-start;\n   font-size: larger;\n}\n#mainNewTask div#divInForm input, #mainNewTask div#divInForm textarea {\n   border: 1px solid rgba(151, 151, 151, 0.5);\n   transition: all 45ms ease-in-out;\n}\n#mainNewTask div#divInForm input:focus, \n#mainNewTask div#divInForm textarea:focus {\n   outline: 2.3px solid gray;\n}\n\na#linkNewTast {\n   text-decoration: none;  \n}\na#linkNewTast button {\n   font-size: large;\n   font-weight: 600;\n}\n\nbutton#btnClose {\n   align-self: flex-start;\n   position: relative;\n   left: 5.8rem;\n   top: 1rem;\n}\nbutton#btnClose.btn-close-white:focus {\n   outline: none;\n   border: none;\n   box-shadow: none;\n}\n\n@media(max-width: 1200px) {\n   #mainNewTask div#divPreForm {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      width: 70vw;\n      height: 90vh;\n   }\n   #mainNewTask div#divInForm {\n      width: 85vw;\n      height: 70vh;\n   }\n}\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

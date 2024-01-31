@@ -36,27 +36,35 @@
 
          <div id="mainNewTask" class="d-none">
             <div id="divPreForm">
-               <form action="/newTask" class="rounded-3 bg-dark">
+               <form id="formTask" action="/newTask" class="rounded-3 bg-dark">
 
                   <div id="divInForm" class="bg-light text-bg-light rounded-3">
 
                      <label for="nome">Nome:</label>
-                     <input class="input-group-text" type="text" name="nome" id="inpNome">
+                     <input class="input-group-text mb-4" type="text" name="nome" id="inpNome">
+
+                     <label for="client">Cliente:</label>
+                     <input class="input-group-text mb-4" type="text" name="client" id="inpClient">
 
                      <label for="data">Data:</label>
-                     <input class="input-group-text" type="date" name="data" id="inpData" >
+                     <input class="input-group-text mb-4 p-3" type="date" name="data" id="inpData" >
+
+                     <label for="link">Link:</label>
+                     <input class="input-group-text mb-4" type="text" name="link" id="inpLink" >
                      
 
                      <label for="descr">Descrição:</label>
-                     <textarea class="input-group-text" name="descr" id="inpDescr" cols="30" rows="10"></textarea>
+                     <textarea class="input-group-text mb-4" name="descr" id="inpDescr" cols="30" rows="10"></textarea>
                      
                      <br>
 
-                     <a id="linkNewTast" href="/newtask">
-                        <button type="submit" class="btn btn-dark w-25">
-                           Criar
-                        </button>
-                     </a>
+                     <div class="d-flex justify-content-center align-items-center">
+                        <a id="linkNewTast" href="/newtask">
+                           <button type="submit" class="btn btn-dark w-100 ">
+                              Criar
+                           </button>
+                        </a>
+                     </div>
 
 
                   </div>
@@ -72,10 +80,9 @@
 
                <thead style="font-weight: bold; font-size: large;">
                   <td>Nome</td>
-                  <td>E-mail</td>
-                  <td>Telefone</td>
-                  <td>Endereço</td>
-                  <td>Site/Rede Social</td>
+                  <td>Data</td>
+                  <td>Link</td>
+                  <td>Descrição</td>
                </thead>
                
                <tr>
@@ -83,7 +90,6 @@
                   <td>vinnie.nsts@gmail.com</td>
                   <td>(11) 99832-1234</td>
                   <td>Rua Vapabussu</td>
-                  <td>send.rolemberg.net.br</td>
                </tr>
                
                <tr>
@@ -91,7 +97,6 @@
                   <td>vinnie.nsts@gmail.com</td>
                   <td>(11) 99832-1234</td>
                   <td>Rua Vapabussu</td>
-                  <td>send.rolemberg.net.br</td>
                </tr>
                
                <tr>
@@ -99,7 +104,6 @@
                   <td>vinnie.nsts@gmail.com</td>
                   <td>(11) 99832-1234</td>
                   <td>Rua Vapabussu</td>
-                  <td>send.rolemberg.net.br</td>
                </tr>
                
                <tr>
@@ -107,7 +111,6 @@
                   <td>vinnie.nsts@gmail.com</td>
                   <td>(11) 99832-1234</td>
                   <td>Rua Vapabussu</td>
-                  <td>send.rolemberg.net.br</td>
                </tr>
 
             </table>
