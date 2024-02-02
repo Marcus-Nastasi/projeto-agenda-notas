@@ -11,32 +11,14 @@ var btn = document.getElementById('btnTasks');
 var btnClose = document.getElementById('btnClose');
 var mainSection = document.getElementById('mainNewTask');
 var preForm = document.getElementById('divPreForm');
-var form = document.getElementById('formTask');
-var inForm = document.getElementById('divInForm');
-var linkCreate = document.getElementById('linkNewTast');
-var labels = document.querySelectorAll('label');
-var inputs = document.querySelectorAll('input');
 btn.onclick = function () {
-  if (mainSection.classList.contains('d-none')) return mainSection.classList.remove('d-none');
+  return mainSection.classList.contains('d-none') ? mainSection.classList.remove('d-none') : 0;
 };
 btnClose.onclick = function () {
   return mainSection.classList.add('d-none');
 };
-mainSection.onclick = function (e) {
-  var ev = e.target;
-  if (ev !== preForm && ev !== form && ev !== inForm && ev != linkCreate) {
-    mainSection.classList.add('d-none');
-  }
-  ;
-  return;
-};
-preForm.onclick = function (e) {
-  var ev = e.target;
-  if (ev !== preForm && ev !== form && ev !== inForm && ev != linkCreate) {
-    mainSection.classList.add('d-none');
-  }
-  ;
-  return;
+document.onclick = function (e) {
+  return e.target == preForm || e.target == mainSection ? mainSection.classList.add('d-none') : 0;
 };
 
 /***/ }),
