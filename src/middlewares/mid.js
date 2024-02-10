@@ -1,5 +1,5 @@
 exports.checkCsrfError = (err, req, res, next) => {
-   if(err) console.log('erro'); // res.render('404');
+   if(err) console.log('erro CSRF'); // res.render('404');
 };
 
 exports.csrfMiddleware = (req, res, next) => {

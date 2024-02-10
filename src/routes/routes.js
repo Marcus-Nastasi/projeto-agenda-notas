@@ -3,6 +3,7 @@ const routes = express.Router();
 const homeController = require('../controllers/homeController');
 const loginController = require('../controllers/loginController');
 const errController = require('../controllers/errController');
+const taskController = require('../controllers/taskController');
 
 // Rotas da Home
 routes.get('/', homeController.index);
@@ -21,6 +22,9 @@ routes.get('/login/logout', loginController.logout);
 
 // Rota erro 404
 routes.get('/404', errController.pgErro);
+
+// Rotas de cadastro de tasks
+routes.post('/task/create', taskController.createTask);
 
 module.exports = routes;
 
