@@ -1,0 +1,49 @@
+<%- include("includes/head") %>
+<%- include("includes/nav") %>
+
+<section class="d-flex flex-row justify-content-center p-5 bg-gradient bg-secondary">
+
+      <form id="formTask" action="/task/edit/<%= task._id %>/aply" method="post" class="rounded-3 p-5 bg-dark">
+
+         <div id="divInForm" class="bg-dark text-bg-dark rounded-3">
+
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+            <label for="nome">Nome:</label>
+            <input value="<%= task.nome %>" class="input-group-text mb-4" type="text" name="nome" id="inpNome">
+
+            <label for="client">Cliente:</label>
+            <input value="<%= task.cliente %>" class="input-group-text mb-4" type="text" name="client" id="inpClient">
+
+            <label for="data">Data:</label>
+            <input value="<%= task.data %>" class="input-group-text mb-4 p-3" type="date" name="data" id="inpData" >
+
+            <label for="link">Link:</label>
+            <input  value="<%= task.link %>" class="input-group-text mb-4" type="text" name="link" id="inpLink" >
+            
+            <label for="descr">Descrição:</label>
+            <textarea placeholder="<%= task.descricao %>" class="input-group-text mb-4" name="descr" id="inpDescr" cols="30" rows="10"></textarea>
+            
+            <br>
+
+            <div class="d-flex flex-column justify-content-center align-items-center">
+
+               <!-- <a id="linkNewTast" href=""> -->
+                  <button type="submit" class="btn mb-4  btn-light w-100 ">
+                     Salvar
+                  </button>
+               <!-- </a> -->
+                  <button type="submit" class="btn btn-light w-100 ">
+                     <a href="/task/edit/:id/exclude">Excluir</a>
+                  </button>
+            </div>
+
+         </div>
+
+      </form>
+
+      <!-- <h1 class="text-bg-light ">Não eixste ID</h1> -->
+      
+</section>
+
+<%- include("includes/footer") %>

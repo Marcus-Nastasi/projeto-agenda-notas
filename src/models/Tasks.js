@@ -10,7 +10,8 @@ const taskSchema = new mongoose.Schema({
 
 const taskModel = mongoose.model('Task Model', taskSchema);
 
-class CreateTask {
+class Task {
+
    constructor(body) {
       this.body = body,
       this.errors = [],
@@ -22,6 +23,11 @@ class CreateTask {
       this.validaString();
 
       this.task = await taskModel.create(this.body);
+   }
+
+   async findTask(id) {
+      const task = taskModel.findById(id);
+      return task;
    }
 
    validaString() {
@@ -39,14 +45,7 @@ class CreateTask {
    }
 }
 
-class EditTask {
 
-}
-
-class DelTask {
-
-}
-
-module.exports = { CreateTask, EditTask, DelTask };
+module.exports = Task;
 
 

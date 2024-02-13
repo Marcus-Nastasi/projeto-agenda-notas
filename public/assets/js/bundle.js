@@ -1,52 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./frontend/js/newTask.js":
-/*!********************************!*\
-  !*** ./frontend/js/newTask.js ***!
-  \********************************/
-/***/ (() => {
-
-var btn = document.getElementById('btnTasks');
-var btnClose = document.getElementById('btnClose');
-var mainSection = document.getElementById('mainNewTask');
-var preForm = document.getElementById('divPreForm');
-btn.onclick = function () {
-  return mainSection.classList.contains('d-none') ? mainSection.classList.remove('d-none') : 0;
-};
-btnClose.onclick = function () {
-  return mainSection.classList.add('d-none');
-};
-document.onclick = function (e) {
-  return e.target == preForm || e.target == mainSection ? mainSection.classList.add('d-none') : 0;
-};
-
-/***/ }),
-
-/***/ "./frontend/js/validaConfirm.js":
-/*!**************************************!*\
-  !*** ./frontend/js/validaConfirm.js ***!
-  \**************************************/
-/***/ (() => {
-
-var inputs = [document.getElementById('confirm-senha'), document.getElementById('cadastro-senha')];
-function validaConfirmadorSenha() {
-  if (inputs[0].value !== inputs[1].value) {
-    inputs[0].style.backgroundColor = 'rgba(255, 166, 0, 0.7)';
-    inputs[0].placeholder = '!';
-  } else {
-    inputs[0].style.backgroundColor = 'white';
-    inputs[0].placeholder = '';
-  }
-}
-inputs.forEach(function (input) {
-  return input.onkeyup = function () {
-    return validaConfirmadorSenha();
-  };
-});
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./frontend/css/style.css":
 /*!**********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./frontend/css/style.css ***!
@@ -22689,19 +22643,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/style.css */ "./frontend/css/style.css");
-/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/newTask */ "./frontend/js/newTask.js");
-/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_newTask__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/validaConfirm */ "./frontend/js/validaConfirm.js");
-/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_validaConfirm__WEBPACK_IMPORTED_MODULE_4__);
 // 
 
 
 
 // css
-
-
-// js
-
 
 })();
 

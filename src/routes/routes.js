@@ -25,6 +25,8 @@ routes.get('/404', errController.pgErro);
 
 // Rotas de cadastro de tasks
 routes.post('/task/create', taskController.createTask);
+routes.get('/task/edit/:id', taskController.formEdit);
+routes.post('/task/edit/:id/aply', taskController.edit);
 
 module.exports = routes;
 
