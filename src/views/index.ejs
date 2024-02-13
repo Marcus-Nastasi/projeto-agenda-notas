@@ -10,7 +10,6 @@
          
          <div class="col-lg-8 my-5">
             <h1 id="h1-home-agenda" class="text-center text-white">Faça o Login ou Crie sua conta.</h1>
-            <!-- <p class="text-center lead text-white">Seus compromissos estão abaixo: </p> -->
          </div>
 
       <% } %>
@@ -18,11 +17,14 @@
       <% if(user) { %>
       
          <div class="col-lg-8 my-5">
-            <h1 id="h1-home-agenda" class="text-center text-white">TaskApp</h1>
+
+            <h1 id="h1-home-agenda" class="text-center text-white">
+               TaskApp
+            </h1>
             <h1 id="h1-home-agenda" class="text-center text-white">
                Olá, <%= user.email %>
             </h1>
-            <p class="text-center lead text-white">Suas tasks estão abaixo:</p>
+            <p class="text-center lead text-white">Suas tarefas estão abaixo:</p>
             
          </div>
 
@@ -80,32 +82,47 @@
          </div>
 
          <div class="table-responsive">
-            <table id="tbl" class="table text-center table-dark table-striped table-hover">
 
-               <thead style="font-weight: bold; font-size: large;">
-                  <td>Nome</td>
-                  <td>Cliente</td>
-                  <td>Due</td>
-                  <td>Link</td>
-                  <td>Descrição</td>
-               </thead>
+            <% if(tasks.length !== 0) { %>
 
-               <% tasks.forEach(task => { %>
+               <table id="tbl" class="table text-center table-dark table-striped table-hover">
 
-                  <tr>
-                     <td><%= task.nome %></td>
-                     <td><%= task.cliente %></td>
-                     <td><%= task.data %></td>
-                     <td><%= task.link %></td>
-                     <td><%= task.descricao %></td>
-                     <td>
-                        <a href="/task/edit/<%= task._id %>">Edit</a>
-                     </td>
-                  </tr>
+                  <thead style="font-weight: bold; font-size: large;">
+                     <td>Nome</td>
+                     <td>Cliente</td>
+                     <td>Due</td>
+                     <td>Link</td>
+                     <td>Descrição</td>
+                  </thead>
 
-               <% }); %>
+                  <% tasks.forEach(task => { %>
 
-            </table>
+                     <tr>
+
+                        <td><%= task.nome %></td>
+                        <td><%= task.cliente %></td>
+                        <td><%= task.data %></td>
+                        <td><%= task.link %></td>
+                        <td><%= task.descricao %></td>
+                        <td>
+                           
+                           <a class="text-warning-emphasis text-decoration-none" href="/task/edit/<%= task._id %>">
+                              Edit
+                           </a>
+                           
+                        </td>
+                     
+                     </tr>
+
+                  <% }); %>
+
+               </table>
+
+            <% } else { %>
+
+               <h2 class="text-light text-center">Adicione alguma tarefa.</h2>
+            
+            <% } %>
 
          </div>
 

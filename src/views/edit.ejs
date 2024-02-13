@@ -1,49 +1,57 @@
 <%- include("includes/head") %>
 <%- include("includes/nav") %>
 
-<section class="d-flex flex-row justify-content-center p-5 bg-gradient bg-secondary">
+<% if(user) { %>
 
-      <form id="formTask" action="/task/edit/<%= task._id %>/aply" method="post" class="rounded-3 p-5 bg-dark">
+   <section class="d-flex flex-row justify-content-center p-5 bg-gradient bg-secondary">
 
-         <div id="divInForm" class="bg-dark text-bg-dark rounded-3">
+         <form id="formTask" action="/task/edit/<%= task._id %>/aply" method="post" class="rounded-3 p-5 bg-dark">
 
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div id="divInForm" class="bg-dark text-bg-dark rounded-3">
 
-            <label for="nome">Nome:</label>
-            <input value="<%= task.nome %>" class="input-group-text mb-4" type="text" name="nome" id="inpNome">
+               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
-            <label for="client">Cliente:</label>
-            <input value="<%= task.cliente %>" class="input-group-text mb-4" type="text" name="client" id="inpClient">
+               <label for="nome">Nome:</label>
+               <input value="<%= task.nome %>" class="input-group-text mb-4 text-start" type="text" name="nome" id="inpNome">
 
-            <label for="data">Data:</label>
-            <input value="<%= task.data %>" class="input-group-text mb-4 p-3" type="date" name="data" id="inpData" >
+               <label for="client">Cliente:</label>
+               <input value="<%= task.cliente %>" class="input-group-text mb-4 text-start " type="text" name="client" id="inpClient">
 
-            <label for="link">Link:</label>
-            <input  value="<%= task.link %>" class="input-group-text mb-4" type="text" name="link" id="inpLink" >
-            
-            <label for="descr">Descrição:</label>
-            <textarea placeholder="<%= task.descricao %>" class="input-group-text mb-4" name="descr" id="inpDescr" cols="30" rows="10"></textarea>
-            
-            <br>
+               <label for="data">Data:</label>
+               <input value="<%= task.data %>" class="input-group-text mb-4 p-3 text-start " type="date" name="data" id="inpData" >
 
-            <div class="d-flex flex-column justify-content-center align-items-center">
+               <label for="link">Link:</label>
+               <input  value="<%= task.link %>" class="input-group-text mb-4 text-start " type="text" name="link" id="inpLink" >
+               
+               <label for="descr">Descrição:</label>
+               <textarea class="input-group-text mb-4 text-start " name="descr" id="inpDescr" cols="30" rows="10"><%= task.descricao %></textarea>
+               
+               <br>
 
-                  <button type="submit" class="btn mb-4  btn-light w-100 ">
-                     Salvar
-                  </button>
+               <div class="d-flex flex-column justify-content-center align-items-center">
 
-                  <button type="submit" class="btn bg-danger-subtle w-100 ">
-                     <a class="text-danger text-decoration-none fw-semibold" href="/task/edit/<%= task._id %>/exclude">
-                        Excluir
-                     </a>
-                  </button>
+                     <button type="submit" class="btn mb-4  btn-light w-100 ">
+                        Salvar
+                     </button>
+
+                     <button type="submit" class="btn bg-danger-subtle w-100 ">
+                        <a class="text-danger text-decoration-none fw-semibold" href="/task/edit/<%= task._id %>/exclude">
+                           Excluir
+                        </a>
+                     </button>
+
+               </div>
 
             </div>
 
-         </div>
+         </form>
+         
+   </section>
 
-      </form>
-      
-</section>
+<% } else { %>
+
+   <h1 class="text-light text-center my-5">Faça login...</h1>
+
+<% } %>
 
 <%- include("includes/footer") %>

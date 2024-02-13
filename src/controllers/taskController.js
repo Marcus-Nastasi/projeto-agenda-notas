@@ -5,13 +5,7 @@ exports.createTask = async (req, res) => {
       const newTask = new Task(req.body);
       await newTask.create();
 
-      // const id = await newTask.findTask(newTask.task._id);
-   
-      // console.log(newTask.task._id);
-
-      req.session.save(() => {
-         return res.redirect(`/task/edit/${newTask.task._id}`);
-      });
+      req.session.save(() => res.redirect(`/`));
 
    } catch(e) {
       console.warn('Erro', e);
@@ -42,9 +36,7 @@ exports.edit = async (req, res) => {
       
       await editTask.edit(req.params.id);
 
-      req.session.save(() => {
-         return res.redirect(`/task/edit/${editTask.task._id}`);
-      });
+      req.session.save(() => res.redirect(`/`));
 
    } catch(error) {
       console.warn(error);
