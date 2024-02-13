@@ -12,17 +12,21 @@ const taskModel = mongoose.model('Task Model', taskSchema);
 
 class Task {
 
-   constructor(body) {
+   constructor(body, user) {
       this.body = body,
       this.errors = [],
-      this.task = null
+      this.user = user
    }
 
    async create() {
       this.formataBody();
       this.validaString();
 
-      this.task = await taskModel.create(this.body);
+      const task = await taskModel.create(this.body);
+
+      this.user.tasks = task;
+
+      return this.user.tasks;
    }
 
    async edit(id) {
@@ -42,9 +46,13 @@ class Task {
       return tasks;
    }
 
-   async delete(id) {
+   async delete(user, id) {
       const task = await taskModel.findByIdAndDelete(id);
       return task;
+   }
+
+   getUser() {
+      console.log(this.user);
    }
 
    validaString() {
@@ -60,9 +68,29 @@ class Task {
          descricao: this.body.descr
       };
    }
+
+}
+
+class User {
+
+   constructor({ _id, email, telefone, senha, tasks }) {
+      this._id = _id,
+      this.email = email,
+      this.telefone = telefone,
+      this.senha = senha,
+      this.tasks = [ ...tasks ]
+   }
+
+   setTasks(...tasks) {
+      this.tasks.push(tasks);
+
+      return this;
+   }
 }
 
 
-module.exports = Task;
+module.exports = { Task, User };
+
+
 
 

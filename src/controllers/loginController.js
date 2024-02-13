@@ -21,6 +21,7 @@ exports.register = async (req, res) => {
    try {
       const registroLogin = new CreateUser(req.body);
       await registroLogin.registraUsuario();
+
       if(registroLogin.errors.length == 0) {
          err = false;
          sucess = true;
@@ -28,7 +29,9 @@ exports.register = async (req, res) => {
          err = registroLogin.errors;
          sucess = false;
       }
+
       res.redirect('back'); // volta para página anterior.
+   
    } catch(e) {
       res.render('404');
       console.error(e);
@@ -40,6 +43,7 @@ exports.logUser = async (req, res) => {
    try {
       const logUser = new LogUser(req.body);
       await logUser.logaUsuario();
+
       if(logUser.errors.length == 0) {
          logErr = false;
          logSucess = 'Você logou com sucesso';
@@ -47,8 +51,11 @@ exports.logUser = async (req, res) => {
          logErr = logUser.errors;
          logSucess = false;
       }
+
       req.session.user = logUser.user;
+      
       res.redirect('back');
+   
    } catch(e) {
       res.render('404');
       console.error(e);

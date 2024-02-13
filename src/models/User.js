@@ -6,11 +6,13 @@ const registerSchema = new mongoose.Schema({
    email: { type: String, required: true },
    telefone: { type: String, required: true },
    senha: { type: String, required: true },
+   tasks: Array
 });
 
 registerModel = mongoose.model('Register', registerSchema);
 
 class CreateUser {
+
    constructor(body) {
       this.body = body;
       this.errors = [];
@@ -19,9 +21,12 @@ class CreateUser {
 
    async registraUsuario() {
       await this.validaCampos();
+
       if(this.errors.length > 0) return;
+
       const salt = bcrypt.genSaltSync();
       this.body.senha = bcrypt.hashSync(this.body.senha, salt);
+
       this.user = await registerModel.create({
          email: this.body.email,
          telefone: this.body.telefone,
@@ -51,7 +56,8 @@ class CreateUser {
          email: this.body.cadastroEmail,
          telefone: this.body.telefone,
          senha: this.body.cadastroSenha,
-         confirmSenha: this.body.confirmSenha
+         confirmSenha: this.body.confirmSenha,
+         tasks: []
       };
    }
 
@@ -123,5 +129,11 @@ class LogUser {
       for(let i in this.body) if(typeof this.body[i] !== 'string') String(this.body[i]);
    }
 }
+
+
+// getters e setters de task
+
+
+
 module.exports = { CreateUser, LogUser };
 

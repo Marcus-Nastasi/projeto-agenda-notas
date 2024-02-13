@@ -1,9 +1,17 @@
-const Task = require('../models/Tasks');
+const { Task, User } = require('../models/Tasks');
 
 exports.createTask = async (req, res) => {
    try {
-      const newTask = new Task(req.body);
-      await newTask.create();
+      const newTask = new Task(req.body, req.session.user);
+      const createdTask = await newTask.create();
+
+      // console.log(req.session.user);
+
+      const user = new User( req.body );
+
+      user.setTasks();
+
+      console.log(req.session.user);
 
       req.session.save(() => res.redirect(`/`));
 
