@@ -23,10 +23,11 @@ routes.get('/login/logout', loginController.logout);
 // Rota erro 404
 routes.get('/404', errController.pgErro);
 
-// Rotas de cadastro de tasks
+// Rotas de tasks
 routes.post('/task/create', taskController.createTask);
 routes.get('/task/edit/:id', taskController.formEdit);
 routes.post('/task/edit/:id/aply', taskController.edit);
+routes.get('/task/edit/:id/exclude', taskController.delete);
 
 module.exports = routes;
 

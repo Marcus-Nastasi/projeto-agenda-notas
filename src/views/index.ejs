@@ -89,18 +89,22 @@
                   <td>Link</td>
                   <td>Descrição</td>
                </thead>
-               
-               <tr>
-                  <td>Marcus Vini</td>
-                  <td>vinnie.nsts@gmail.com</td>
-                  <td>vinnie.nsts@gmail.com</td>
-                  <td>(11) 99832-1234</td>
-                  <td>Rua Vapabussu</td>
-                  <td>
-                     <a href="/task/edit/10">Edit</a>
-                  </td>
-               </tr>
-               
+
+               <% tasks.forEach(task => { %>
+
+                  <tr>
+                     <td><%= task.nome %></td>
+                     <td><%= task.cliente %></td>
+                     <td><%= task.data %></td>
+                     <td><%= task.link %></td>
+                     <td><%= task.descricao %></td>
+                     <td>
+                        <a href="/task/edit/<%= task._id %>">Edit</a>
+                     </td>
+                  </tr>
+
+               <% }); %>
+
             </table>
 
          </div>

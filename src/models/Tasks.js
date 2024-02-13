@@ -25,8 +25,25 @@ class Task {
       this.task = await taskModel.create(this.body);
    }
 
+   async edit(id) {
+      this.formataBody();
+      this.validaString();
+
+      this.task = await taskModel.findByIdAndUpdate(id, this.body, { new: true });
+   }
+
    async findTask(id) {
       const task = taskModel.findById(id);
+      return task;
+   }
+
+   async agroupTasks() {
+      const tasks = await taskModel.find();
+      return tasks;
+   }
+
+   async delete(id) {
+      const task = await taskModel.findByIdAndDelete(id);
       return task;
    }
 

@@ -28,21 +28,21 @@
 
             <div class="d-flex flex-column justify-content-center align-items-center">
 
-               <!-- <a id="linkNewTast" href=""> -->
                   <button type="submit" class="btn mb-4  btn-light w-100 ">
                      Salvar
                   </button>
-               <!-- </a> -->
-                  <button type="submit" class="btn btn-light w-100 ">
-                     <a href="/task/edit/:id/exclude">Excluir</a>
+
+                  <button type="submit" class="btn bg-danger-subtle w-100 ">
+                     <a class="text-danger text-decoration-none fw-semibold" href="/task/edit/<%= task._id %>/exclude">
+                        Excluir
+                     </a>
                   </button>
+
             </div>
 
          </div>
 
       </form>
-
-      <!-- <h1 class="text-bg-light ">Não eixste ID</h1> -->
       
 </section>
 
