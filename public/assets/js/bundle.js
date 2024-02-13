@@ -22689,10 +22689,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! regenerator-runtime/runtime */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/style.css */ "./frontend/css/style.css");
-/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/validaConfirm */ "./frontend/js/validaConfirm.js");
-/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_validaConfirm__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/newTask */ "./frontend/js/newTask.js");
-/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_newTask__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/newTask */ "./frontend/js/newTask.js");
+/* harmony import */ var _js_newTask__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_newTask__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/validaConfirm */ "./frontend/js/validaConfirm.js");
+/* harmony import */ var _js_validaConfirm__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_validaConfirm__WEBPACK_IMPORTED_MODULE_4__);
 // 
 
 

@@ -6,6 +6,7 @@ import 'regenerator-runtime/runtime';
 import './css/style.css';
 
 // js
-import './js/validaConfirm';
 import './js/newTask';
+
+import './js/validaConfirm';
 
