@@ -24,20 +24,23 @@ const sessionOptions = session({
    store: mongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
    resave: false,
    saveUninitialized: false,
-   cookie: { maxAge: 1000*60*60*12, httpOnly: true }
+   cookie: { 
+      maxAge: 1000*60*60*3, 
+      httpOnly: true 
+   }
 });
 
 // usando as sessionOptions e flashes.
 app.use(sessionOptions);
 app.use(flash());
 
-// encoding url para tratamento automático da requisição
+// encoding url para tratamento da requisição
 app.use(express.urlencoded({ extended: true }));
 
 // setando arquivos estáticos de html, ejs e css
-app.set('views', path.resolve(__dirname, 'src', 'views'));
+app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'ejs');
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Importando CSRF
 const csrf = require('csurf');

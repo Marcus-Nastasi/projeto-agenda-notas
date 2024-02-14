@@ -6,7 +6,6 @@ const registerSchema = new mongoose.Schema({
    email: { type: String, required: true },
    telefone: { type: String, required: true },
    senha: { type: String, required: true },
-   tasks: Array
 });
 
 registerModel = mongoose.model('Register', registerSchema);
@@ -20,7 +19,10 @@ class CreateUser {
    }
 
    async registraUsuario() {
-      await this.validaCampos();
+      this.validaString();
+      this.formataBody();
+      this.validaErrosCampos();
+      await this.userExists();
 
       if(this.errors.length > 0) return;
 
@@ -32,21 +34,6 @@ class CreateUser {
          telefone: this.body.telefone,
          senha: this.body.senha,
       });
-   }
-
-   async validaCampos() {
-      this.validaString();
-      this.formataBody();
-      this.validaErrosCampos();
-      await this.userExists();
-   }
-
-   async setaTasks(tasks) {
-      this.validaString();
-
-      if(!tasks.length > 0) return;
-
-      tasks.forEach(element => this.body.tasks.push(element));
    }
 
    // baixa ordem
@@ -65,7 +52,6 @@ class CreateUser {
          telefone: this.body.telefone,
          senha: this.body.cadastroSenha,
          confirmSenha: this.body.confirmSenha,
-         tasks: []
       };
    }
 
@@ -103,6 +89,7 @@ class CreateUser {
 
 // Login Usuário
 class LogUser {
+
    constructor(body) {
       this.body = body;
       this.errors = [];
@@ -110,18 +97,16 @@ class LogUser {
    }
 
    async logaUsuario() {
-      await this.validaCampos();
-      if(this.errors.length > 0) return;
-   }
-
-   async validaCampos() {
       this.validaString();
       await this.userExists();
+      
+      if(this.errors.length > 0) return;
    }
 
    // baixa ordem
    async userExists() {
       this.user = await registerModel.findOne({ email: this.body.loginEmail });
+
       if(!this.user) {
          this.errors.push('E-mail não encontrado. Faça o cadastro.');
          return;

@@ -9,7 +9,7 @@ const taskSchema = new mongoose.Schema({
    descricao: String
 });
 
-const taskModel = mongoose.model('Task Model', taskSchema);
+const taskModel = mongoose.model('Tasks', taskSchema);
 
 class Task {
 
@@ -63,7 +63,6 @@ class Task {
          descricao: this.body.descr
       };
    }
-
 }
 
 module.exports = Task;

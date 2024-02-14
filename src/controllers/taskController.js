@@ -3,12 +3,13 @@ const Task = require('../models/Tasks');
 exports.createTask = async (req, res) => {
    try {
       const newTask = new Task(req.body, req.session.user);
-      const createdTask = await newTask.create();
+      await newTask.create();
 
-      req.session.save(() => res.redirect(`/`));
+      return req.session.save(() => res.redirect(`/`));
 
    } catch(e) {
-      console.warn('Erro', e);
+
+      console.log('Erro:', e);
       return res.render('404');
    }
 };
@@ -24,8 +25,9 @@ exports.formEdit = async (req, res) => {
    
       return res.render('edit', { user: req.session.user, task: task });
 
-   } catch (error) {
-      console.warn('Erro:', error);
+   } catch (e) {
+
+      console.log('Erro:', e);
       return res.render('404');
    }
 };
@@ -36,10 +38,11 @@ exports.edit = async (req, res) => {
       
       await editTask.edit(req.params.id);
 
-      req.session.save(() => res.redirect(`/`));
+      return req.session.save(() => res.redirect(`/`));
 
-   } catch(error) {
-      console.warn('Erro no taskController edit: ', error);
+   } catch(e) {
+
+      console.log('Erro: ', e);
       return res.redirect('/404');
    }   
 };
@@ -47,12 +50,13 @@ exports.edit = async (req, res) => {
 exports.delete = async (req, res) => {
    try {
       const deleteTask = new Task();
-      const task = await deleteTask.delete(req.params.id);
+      await deleteTask.delete(req.params.id);
 
       return req.session.save(() => res.redirect(`/`));
 
-   } catch (error) {
-      console.log(error);
+   } catch (e) {
+
+      console.log('Erro: ', e);
       return res.render('404');
    }
 };

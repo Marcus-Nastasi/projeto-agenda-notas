@@ -3,14 +3,12 @@ const { CreateUser, LogUser } = require('../models/User');
 var err = false;
 var sucess = false;
 var logErr = false;
-var logSucess = false;
 
 // Index controller
 exports.index = (req, res) => {
    res.render('login', { 
       sucess: sucess, 
       err: err, 
-      logSucess: logSucess,  
       logErr: logErr,
       user: null
    });
@@ -22,15 +20,17 @@ exports.register = async (req, res) => {
       const registroLogin = new CreateUser(req.body);
       await registroLogin.registraUsuario();
 
-      if(registroLogin.errors.length == 0) {
-         err = false;
-         sucess = true;
-      } else {
+      if(registroLogin.errors.length !== 0) {
          err = registroLogin.errors;
          sucess = false;
+
+         return res.redirect('back');   
       }
 
-      res.redirect('back'); // volta para página anterior.
+      err = false;
+      sucess = true;
+
+      return res.redirect('back');
    
    } catch(e) {
       res.render('404');
@@ -44,27 +44,24 @@ exports.logUser = async (req, res) => {
       const logUser = new LogUser(req.body);
       await logUser.logaUsuario();
 
-      if(logUser.errors.length == 0) {
-         logErr = false;
-         logSucess = 'Você logou com sucesso';
-      } else {
+      if(logUser.errors.length !== 0) {
          logErr = logUser.errors;
-         logSucess = false;
+         return res.redirect('back');
       }
 
       req.session.user = logUser.user;
       
-      res.redirect('back');
-   
+      return res.redirect('/');
+
    } catch(e) {
-      res.render('404');
       console.error(e);
+      return res.render('404');
    }
 };
 
 // Rota logout
 exports.logout = (req, res) => {
    req.session.destroy();
-   res.redirect('back');
+   return res.redirect('back');
 };
 
