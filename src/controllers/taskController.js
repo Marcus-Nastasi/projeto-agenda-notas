@@ -1,17 +1,9 @@
-const { Task, User } = require('../models/Tasks');
+const Task = require('../models/Tasks');
 
 exports.createTask = async (req, res) => {
    try {
       const newTask = new Task(req.body, req.session.user);
       const createdTask = await newTask.create();
-
-      // console.log(req.session.user);
-
-      const user = new User( req.body );
-
-      user.setTasks();
-
-      console.log(req.session.user);
 
       req.session.save(() => res.redirect(`/`));
 
@@ -40,15 +32,15 @@ exports.formEdit = async (req, res) => {
 
 exports.edit = async (req, res) => {
    try {
-      const editTask = new Task(req.body);
+      const editTask = new Task(req.body, req.session.user);
       
       await editTask.edit(req.params.id);
 
       req.session.save(() => res.redirect(`/`));
 
    } catch(error) {
-      console.warn(error);
-      return res.redirect('/login');
+      console.warn('Erro no taskController edit: ', error);
+      return res.redirect('/404');
    }   
 };
 

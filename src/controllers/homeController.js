@@ -1,21 +1,20 @@
-const { Task, User } = require('../models/Tasks');
+const Task = require('../models/Tasks');
 
 exports.index = async (req, res) => {
    try {
-      res.locals.user = req.session.user;
-      res.locals.user.tasks = [];
+      const user = req.session.user
+      var tasks;
 
-      const homeTask = new Task(req.body, req.session.user);
-   
-      // homeTask.getUser();
-      
-      const tasks = await homeTask.agroupTasks();
+      res.locals.user = user;
 
-      res.locals.user.tasks = [...tasks];
+      if(user) {
+         const homeTask = new Task(req.body, req.session.user);
+         tasks = await homeTask.agroupTasks();
+      }
    
       req.session.save(() => {
          return res.render('index', { 
-            user: res.locals.user, 
+            user: req.session.user, 
             tasks: tasks 
          });
       });
@@ -24,6 +23,5 @@ exports.index = async (req, res) => {
       console.log(error);
       return res.render('404');
    }
-
 };
 

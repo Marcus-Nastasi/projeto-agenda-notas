@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema({
+   usuario: { type: String, required: true},
    nome: String,
    cliente: String,
    data: String,
@@ -22,37 +23,30 @@ class Task {
       this.formataBody();
       this.validaString();
 
-      const task = await taskModel.create(this.body);
-
-      this.user.tasks = task;
-
-      return this.user.tasks;
+      return await taskModel.create(this.body);
    }
 
    async edit(id) {
       this.formataBody();
       this.validaString();
 
-      this.task = await taskModel.findByIdAndUpdate(id, this.body, { new: true });
+      return await taskModel.findByIdAndUpdate(id, this.body, { new: true });
    }
 
    async findTask(id) {
-      const task = taskModel.findById(id);
-      return task;
+      return taskModel.findById(id);
    }
 
    async agroupTasks() {
-      const tasks = await taskModel.find();
-      return tasks;
+      return await taskModel.find({ usuario: this.getId() });
    }
 
-   async delete(user, id) {
-      const task = await taskModel.findByIdAndDelete(id);
-      return task;
+   async delete(id) {
+      return await taskModel.findByIdAndDelete(id);
    }
 
-   getUser() {
-      console.log(this.user);
+   getId() {
+      return String(this.user._id);
    }
 
    validaString() {
@@ -61,6 +55,7 @@ class Task {
 
    formataBody() {
       this.body = {
+         usuario: this.getId(),
          nome: this.body.nome,
          cliente: this.body.client,
          data: this.body.data,
@@ -71,25 +66,7 @@ class Task {
 
 }
 
-class User {
-
-   constructor({ _id, email, telefone, senha, tasks }) {
-      this._id = _id,
-      this.email = email,
-      this.telefone = telefone,
-      this.senha = senha,
-      this.tasks = [ ...tasks ]
-   }
-
-   setTasks(...tasks) {
-      this.tasks.push(tasks);
-
-      return this;
-   }
-}
-
-
-module.exports = { Task, User };
+module.exports = Task;
 
 
 

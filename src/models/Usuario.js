@@ -1,24 +1,14 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
-const bcrypt = require('bcryptjs');
 
-const registerSchema = new mongoose.Schema({
-   email: { type: String, required: true },
-   telefone: { type: String, required: true },
-   senha: { type: String, required: true },
-   tasks: Array
-});
-
-registerModel = mongoose.model('Register', registerSchema);
-
-class CreateUser {
+class Usuario {
 
    constructor(body) {
       this.body = body;
       this.errors = [];
       this.user = null;
+      this.tasks = [];
    }
 
+   // REGISTRO
    async registraUsuario() {
       await this.validaCampos();
 
@@ -99,16 +89,10 @@ class CreateUser {
          this.errors.push('Confirmação de senha diferente da senha.');
       }
    }
-}
 
-// Login Usuário
-class LogUser {
-   constructor(body) {
-      this.body = body;
-      this.errors = [];
-      this.user = null;
-   }
 
+
+   // LOGIN
    async logaUsuario() {
       await this.validaCampos();
       if(this.errors.length > 0) return;
@@ -133,10 +117,58 @@ class LogUser {
       }
    }
 
-   validaString() {
-      for(let i in this.body) if(typeof this.body[i] !== 'string') String(this.body[i]);
-   }
-}
 
-module.exports = { CreateUser, LogUser };
+
+   // TASKS
+   async create() {
+      this.formataBody();
+      this.validaString();
+
+      const task = await taskModel.create(this.body);
+
+      this.user.tasks = task;
+
+      return this.user.tasks;
+   }
+
+   async edit(id) {
+      this.formataBody();
+      this.validaString();
+
+      this.task = await taskModel.findByIdAndUpdate(id, this.body, { new: true });
+   }
+
+   async findTask(id) {
+      const task = taskModel.findById(id);
+      return task;
+   }
+
+   async agroupTasks() {
+      const tasks = await taskModel.find();
+      return tasks;
+   }
+
+   async delete(user, id) {
+      const task = await taskModel.findByIdAndDelete(id);
+      return task;
+   }
+
+   getUser() {
+      console.log(this.user);
+   }
+
+   formataBody() {
+      this.body = {
+         nome: this.body.nome,
+         cliente: this.body.client,
+         data: this.body.data,
+         link: this.body.link,
+         descricao: this.body.descr
+      };
+   }
+
+
+   // GENERICOS
+
+}
 
