@@ -26,7 +26,6 @@ exports.formEdit = async (req, res) => {
       return res.render('edit', { user: req.session.user, task: task });
 
    } catch (e) {
-
       console.log('Erro:', e);
       return res.render('404');
    }
@@ -41,7 +40,6 @@ exports.edit = async (req, res) => {
       return req.session.save(() => res.redirect(`/`));
 
    } catch(e) {
-
       console.log('Erro: ', e);
       return res.redirect('/404');
    }   
@@ -55,7 +53,6 @@ exports.delete = async (req, res) => {
       return req.session.save(() => res.redirect(`/`));
 
    } catch (e) {
-
       console.log('Erro: ', e);
       return res.render('404');
    }

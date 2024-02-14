@@ -12,15 +12,12 @@ exports.index = async (req, res) => {
          tasks = await homeTask.agroupTasks();
       }
    
-      req.session.save(() => {
-         return res.render('index', { 
-            user: req.session.user, 
-            tasks: tasks 
-         });
-      });
+      return req.session.save(() => res.render('index', { 
+         user: req.session.user, tasks: tasks 
+      }));
 
    } catch (error) {
-      console.log(error);
+      console.log('Erro: ', error);
       return res.render('404');
    }
 };
